@@ -1,0 +1,1 @@
+select c.customerid from customers as c left join orders as o on o.customerid = c.customerid where orderid is null;

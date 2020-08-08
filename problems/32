@@ -1,0 +1,1 @@
+select customerid, orderid, sum(unitprice*quantity) as totalorderamount from orders join orderdetails using(orderid) where extract(YEAR from orderdate) = 2016 group by orderid having sum(unitprice*quantity)::numeric > 10000;

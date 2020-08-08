@@ -1,0 +1,18 @@
+
+select employeeid, orderid, orderdate from orders where orderdate::date = (date_trunc('month', orderdate::date) + interval '1 month' - interval '1 day')::date order by employeeid, orderid
+
+or
+
+create or replace function last_day(date_from date)                                                                     
+returns date                                                                                                                       
+language plpgsql
+as
+$$
+declare
+last_day date;
+begin
+select date_trunc('month', date_from) + interval '1 month' - interval '1 day' into last_day;
+return last_day;
+end;
+$$;
+select employeeid, orderid, orderdate from orders where orderdate::date = last_day(orderdate::date) order by employeeid, orderid;

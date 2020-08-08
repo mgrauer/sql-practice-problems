@@ -1,0 +1,1 @@
+select lastname, o.orderid, productname, quantity from employees as e, orderdetails as od, orders as o, products as p where e.employeeid = o.employeeid and o.orderid=od.orderid and od.productid=p.productid order by o.orderid, quantity desc;

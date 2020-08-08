@@ -1,0 +1,1 @@
+select count(*), orderid, quantity from orderdetails where quantity >= 60 group by orderid, quantity having count(*) > 1;

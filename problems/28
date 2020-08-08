@@ -1,0 +1,1 @@
+select shipcountry, avg(freight::numeric) as avgcost, count(*) from orders where orderdate > (select max(orderdate) - interval '1 year' from orders) group by shipcountry order by avgcost desc limit 3;

@@ -1,0 +1,4 @@
+with dupords (orderid) as (
+select orderid from orderdetails  where quantity >= 60 group by orderid, quantity having count(*) > 1
+)
+select orderid, productid, unitprice, quantity, discount from orderdetails where orderid in (select orderid from dupords);

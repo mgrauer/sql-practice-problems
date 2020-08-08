@@ -1,0 +1,11 @@
+SELECT *
+FROM  (
+SELECT DISTINCT 10249 + trunc(random() * 829)::integer AS orderid
+FROM   generate_series(1, 2000) g
+) r 
+JOIN   orders USING (orderid)
+LIMIT  162;
+
+or
+
+select * from orders order by random() limit 162;
