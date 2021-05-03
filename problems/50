@@ -1,0 +1,2 @@
+with cgs as (select customers.customerid, customers.companyname, sum(quantity*unitprice)::numeric as totalorderamount, case when sum(quantity*unitprice)::numeric > 10000 then 'very high' else 'low' end as customergroup from customers join orders using (customerid) join orderdetails using (orderid) where extract(YEAR from orderdate) = 2016 group by customers.customerid, customers.companyname) select count(*), count(*) * 1.0/(select count(*) from cgs) from cgs group by customergroup;
+
